@@ -1,0 +1,82 @@
+# =============================================================================
+# spec.yaml - Configuración central del proyecto Clasificador-Edades
+# =============================================================================
+# Este archivo define las CONVENCIONES que TODO el equipo debe seguir.
+# Si alguien cambia algo aquí, debe avisar al equipo y todos deben
+# regenerar sus outputs parciales para que el merge funcione.
+# =============================================================================
+
+# --- Preprocesamiento de imágenes ---------------------------------------------
+image:
+  size: 128                    # Resolución final (cuadrada): 128x128
+  grayscale: true              # LBP/HOG funcionan mejor en escala de grises
+  format: jpg                  # Formato de salida
+  quality: 95                  # Calidad JPG (95 = casi sin pérdida)
+  face_margin: 0.2             # Margen alrededor de la cara detectada (20%)
+
+# --- Buckets de edad (clases del clasificador final) --------------------------
+age_buckets:
+  young: [0, 25]               # Joven: bebés, niños, adolescentes, jóvenes adultos
+  adult: [26, 60]              # Adulto: adultez plena
+  old:   [61, 120]             # Viejo: tercera edad
+
+# --- Sub-buckets internos (para entrenar mejor la clase 'young') --------------
+# Idea: 'young' (0-25) es muy heterogénea. Entrenamos con 5 clases finas y
+# colapsamos a 3 al evaluar. Esto mejora accuracy en 'young'.
+age_sub_buckets:
+  baby:         [0, 2]
+  child:        [3, 12]
+  teen:         [13, 17]
+  young_adult:  [18, 25]
+  middle_adult: [26, 45]
+  mature_adult: [46, 60]
+  old:          [61, 120]
+
+# --- Vocabulario común de etnia (normalizado entre todos los datasets) --------
+ethnicity_vocab:
+  - white
+  - black
+  - asian            # Junta east_asian, southeast_asian, indian
+  - latino
+  - other            # Middle Eastern, mixto, ambiguo
+  - unknown          # Para datasets sin anotación de etnia (ej. AgeDB)
+
+# --- Vocabulario de género ---------------------------------------------------
+gender_vocab:
+  - male
+  - female
+  - unknown
+
+# --- Splits del dataset ------------------------------------------------------
+splits:
+  train: 0.70
+  val:   0.15
+  test:  0.15
+  random_seed: 42              # Para reproducibilidad
+
+# --- Parámetros de extracción de features ------------------------------------
+features:
+  lbp:
+    P: 8                       # Número de vecinos
+    R: 1                       # Radio
+    method: uniform            # Patrones uniformes (59 bins)
+  hog:
+    pixels_per_cell: [16, 16]  # Tamaño de cada celda
+    cells_per_block: [2, 2]    # Bloques para normalización
+    orientations: 9            # Bins de orientación
+  landmarks:
+    backend: mediapipe         # Alternativa: 'dlib' (requiere cmake)
+    n_landmarks: 468           # MediaPipe Face Mesh
+
+# --- Detección de duplicados -------------------------------------------------
+duplicates:
+  hash_method: phash           # Perceptual hash (resiste compresión, resize)
+  threshold: 5                 # Distancia Hamming mínima para no ser duplicado
+
+# --- Datasets esperados (para validación) ------------------------------------
+datasets:
+  - fairface
+  - utkface
+  - agedb
+  - appa_real
+  - imdb_wiki

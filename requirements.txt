@@ -1,0 +1,42 @@
+# =============================================================================
+# requirements.txt - Dependencias del proyecto
+# =============================================================================
+# Instalar con: pip install -r requirements.txt
+# Recomendado: usar entorno virtual (venv o conda)
+#
+#   python -m venv venv
+#   source venv/bin/activate     (Linux/Mac)
+#   venv\Scripts\activate        (Windows)
+#   pip install -r requirements.txt
+# =============================================================================
+
+# --- Manejo de imágenes ---
+opencv-python==4.10.0.84       # Lectura/escritura de imágenes, operaciones básicas
+scikit-image==0.24.0           # LBP, HOG, GLCM (extracción de features clásicas)
+Pillow==10.4.0                 # Backend de imágenes para hashing
+
+# --- Detección de caras y landmarks ---
+mtcnn==0.1.1                   # Detección robusta de caras
+mediapipe==0.10.14             # Face Mesh con 468 landmarks (más fácil de instalar que dlib)
+tensorflow==2.16.1             # Backend requerido por MTCNN
+
+# --- Detección de duplicados ---
+ImageHash==4.3.1               # Perceptual hashing (pHash, dHash, etc.)
+
+# --- Manipulación de datos ---
+pandas==2.2.2                  # DataFrames, CSV, manifest
+numpy==1.26.4                  # Operaciones numéricas
+PyYAML==6.0.2                  # Lectura de spec.yaml
+scipy==1.13.1                  # Para leer .mat files de IMDB-Wiki
+
+# --- Machine Learning clásico ---
+scikit-learn==1.5.1            # SVM, RF, Logistic Regression, métricas, PCA, scalers
+xgboost==2.1.1                 # Gradient boosting
+
+# --- Utilidades ---
+tqdm==4.66.5                   # Barras de progreso
+joblib==1.4.2                  # Serialización de modelos sklearn
+
+# --- Visualización (para reportes) ---
+matplotlib==3.9.2              # Gráficas
+seaborn==0.13.2                # Heatmaps, confusion matrix bonita
