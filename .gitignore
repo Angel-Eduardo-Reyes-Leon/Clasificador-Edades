@@ -1,0 +1,33 @@
+# Datos pesados (van a Google Drive, no a Git)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/partial_outputs/*
+!data/partial_outputs/.gitkeep
+data/final/features.csv
+!data/final/manifest.csv
+!data/final/.gitkeep
+
+# Modelos
+models/*
+!models/.gitkeep
+
+# Reportes generados
+reports/*
+!reports/.gitkeep
+
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+*.egg-info/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDEs
+.vscode/
+.idea/
+.DS_Store

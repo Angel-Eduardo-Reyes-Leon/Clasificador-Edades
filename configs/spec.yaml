@@ -1,0 +1,58 @@
+# spec.yaml — Convenciones del equipo
+# Si alguien cambia algo aquí, debe avisar al equipo completo.
+
+image:
+  size: 128
+  grayscale: true
+  format: jpg
+  quality: 95
+  face_margin: 0.2
+
+age_buckets:
+  young: [0, 25]
+  adult: [26, 60]
+  old:   [61, 120]
+
+age_sub_buckets:
+  baby:         [0, 2]
+  child:        [3, 12]
+  teen:         [13, 17]
+  young_adult:  [18, 25]
+  middle_adult: [26, 45]
+  mature_adult: [46, 60]
+  old:          [61, 120]
+
+ethnicity_vocab:
+  - white
+  - black
+  - asian
+  - latino
+  - other
+  - unknown
+
+gender_vocab:
+  - male
+  - female
+  - unknown
+
+splits:
+  train: 0.70
+  val:   0.15
+  test:  0.15
+  random_seed: 42
+
+features:
+  lbp:
+    P: 8
+    R: 1
+    method: uniform
+  hog:
+    pixels_per_cell: [16, 16]
+    cells_per_block: [2, 2]
+    orientations: 9
+  landmarks:
+    backend: mediapipe
+
+duplicates:
+  hash_method: phash
+  threshold: 5
