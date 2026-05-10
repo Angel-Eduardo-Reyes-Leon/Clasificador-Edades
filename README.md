@@ -81,6 +81,7 @@ Las instrucciones para crear ese CSV por dataset están en `docs/DATASET_GUIDE.m
 | AgeDB | https://ibug.doc.ic.ac.uk/resources/agedb/ | 12k |
 | APPA-REAL | https://chalearnlap.cvc.uab.cat/dataset/26/description/ | 7.5k |
 | IMDB-Wiki | https://data.vision.ee.ethz.ch/cvl/rrothe/imdb-wiki/ | 500k |
+| Faces: Age Detection from Images | https://www.kaggle.com/datasets/arashnic/faces-age-detection-dataset | 110.66 MB |
 
 ## Convenciones
 
